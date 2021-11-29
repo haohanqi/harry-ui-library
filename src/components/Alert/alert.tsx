@@ -3,9 +3,9 @@ import React, { useState } from "react"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-type AlertType = "success" | "default" | "danger" | "warning"
+export type AlertType = "success" | "default" | "danger" | "warning"
 
-interface AlertProps {
+export interface AlertProps {
   alert_type?: AlertType
   alert_title: string
   alert_description?: string
@@ -36,11 +36,11 @@ const Alert: React.FC<AlertProps> = ({
   return (
     <>
       {!hide && (
-        <div className={classnames}>
+        <div className={classnames} role="alert">
           <h3>{alert_title}</h3>
           {alert_description && <p>{alert_description}</p>}
           {close_able && (
-            <span className="alert-close" onClick={handleClose}>
+            <span className="alert-close" onClick={handleClose} role="button">
               <FontAwesomeIcon icon={faTimes} />
             </span>
           )}
