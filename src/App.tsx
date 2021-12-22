@@ -1,11 +1,17 @@
 import Button, { ButtonType, ButtonSize } from "./components/Button/button"
 import Alert from "./components/Alert/alert"
+import Menu from "./components/Menu/menu"
+import MenuItem from "./components/Menu/menuItem"
+import SubMenu from "./components/Menu/subMenu"
+import Tabs from "./components/Tabs/tabs"
+
 import "./styles/index.scss"
+import TabsItem from "./components/Tabs/tabsItem"
 
 function App() {
   return (
-    <div className="App">
-      {/* <Button
+    <div style={{ width: "95%", margin: "auto" }}>
+      <Button
         className="customer"
         btnType={ButtonType.Primary}
         onClick={() => {
@@ -22,7 +28,7 @@ function App() {
       </Button>
       <Button btnType={ButtonType.Danger} size={ButtonSize.Large}>
         Danger
-      </Button> */}
+      </Button>
       <Alert alert_title="this is an alert" />
       <Alert
         alert_title="this is an alert"
