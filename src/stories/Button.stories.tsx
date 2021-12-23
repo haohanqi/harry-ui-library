@@ -9,7 +9,26 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     onClick: { action: "clicked" },
-    backgroundColor: { control: "color" },
+    btnType: {
+      options: ["danger", "default", "link", "primary"],
+      control: {
+        type: "select",
+        labels: {
+          danger: "Danger",
+          default: "Default",
+        },
+      },
+    },
+    size: {
+      options: ["lg", "sm"],
+      control: {
+        type: "select",
+        labels: {
+          lg: "Large",
+          sm: "Small",
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof Button>
 
@@ -21,30 +40,4 @@ export const Default = Template.bind({})
 Default.args = {
   btnType: ButtonType.Default,
   children: "BUTTON",
-}
-
-export const Danger = Template.bind({})
-Danger.args = {
-  btnType: ButtonType.Danger,
-  children: "DANGER",
-}
-
-export const Link = Template.bind({})
-Link.args = {
-  btnType: ButtonType.Link,
-  children: "LINK",
-}
-
-export const Large = Template.bind({})
-Large.args = {
-  ...Default.args,
-  size: ButtonSize.Large,
-  children: "LARGE",
-}
-
-export const Small = Template.bind({})
-Small.args = {
-  ...Default.args,
-  size: ButtonSize.Small,
-  children: "SMALL",
 }
