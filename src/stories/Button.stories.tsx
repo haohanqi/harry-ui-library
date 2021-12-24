@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react"
-
+import { screen, userEvent } from "@storybook/testing-library"
 import Button, { ButtonType, ButtonSize } from "../components/Button/button"
 import "../styles/index.scss"
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -40,4 +40,8 @@ export const Default = Template.bind({})
 Default.args = {
   btnType: ButtonType.Default,
   children: "BUTTON",
+}
+
+Default.play = async () => {
+  await userEvent.click(screen.getByText("BUTTON"))
 }

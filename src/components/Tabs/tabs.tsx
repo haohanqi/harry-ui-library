@@ -24,7 +24,9 @@ const Tabs: React.FC<TabsProps> = ({
   className,
   children,
 }) => {
-  const [currentActive, setCurrentActive] = useState(0)
+  const [currentActive, setCurrentActive] = useState(
+    defaultIndex ? defaultIndex : 0
+  )
   const handleSelect = (index: number) => {
     setCurrentActive(index)
     if (onSelect) {
@@ -40,7 +42,8 @@ const Tabs: React.FC<TabsProps> = ({
 
   const renderChild = () => {
     return React.Children.map(children, (child, index) => {
-      const childElement = child as React.FunctionComponentElement<TabsItemProps>
+      const childElement =
+        child as React.FunctionComponentElement<TabsItemProps>
       if (childElement.type.displayName === "TabsItem") {
         return React.cloneElement(childElement, {
           index,
