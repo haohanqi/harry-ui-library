@@ -1,21 +1,21 @@
-import Button, { ButtonType, ButtonSize } from "./components/Button/button"
-import Alert from "./components/Alert/alert"
-import Menu from "./components/Menu/menu"
-import MenuItem from "./components/Menu/menuItem"
-import SubMenu from "./components/Menu/subMenu"
-import Tabs from "./components/Tabs/tabs"
+import Button, { ButtonType, ButtonSize } from './components/Button/button'
+import Alert from './components/Alert/alert'
+import Menu from './components/Menu/menu'
+import MenuItem from './components/Menu/menuItem'
+import SubMenu from './components/Menu/subMenu'
+import Tabs from './components/Tabs/tabs'
 
-import "./styles/index.scss"
-import TabsItem from "./components/Tabs/tabsItem"
+import './styles/index.scss'
+import TabsItem from './components/Tabs/tabsItem'
 
 function App() {
   return (
-    <div style={{ width: "95%", margin: "auto" }}>
+    <div style={{ width: '95%', margin: 'auto' }}>
       <Button
         className="customer"
         btnType={ButtonType.Primary}
         onClick={() => {
-          console.log("click")
+          console.log('click')
         }}
       >
         Primary
@@ -52,7 +52,7 @@ function App() {
         onSelect={(index) => {
           alert(index)
         }}
-        defaultOpenSubmenus={["2"]}
+        defaultOpenSubmenus={['2']}
       >
         <MenuItem>menu item 1</MenuItem>
         <MenuItem disabled>menu item 2</MenuItem>

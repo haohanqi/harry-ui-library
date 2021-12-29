@@ -1,31 +1,33 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react"
-import { screen, userEvent } from "@storybook/testing-library"
-import Button, { ButtonType, ButtonSize } from "../components/Button/button"
-import "../styles/index.scss"
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { screen, userEvent } from '@storybook/testing-library'
+import Button, { ButtonType, ButtonSize } from '../components/Button/button'
+import '../styles/index.scss'
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Example/Button",
+  title: 'Example/Button',
   component: Button,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    onClick: { action: "clicked" },
+    onClick: { action: 'clicked' },
     btnType: {
-      options: ["danger", "default", "link", "primary"],
+      options: ['danger', 'default', 'link', 'primary'],
       control: {
-        type: "select",
+        type: 'select',
         labels: {
-          danger: "Danger",
-          default: "Default",
+          danger: 'Danger',
+          default: 'Default',
+          link: 'Link',
+          primary: 'Primary',
         },
       },
     },
     size: {
-      options: ["lg", "sm"],
+      options: ['lg', 'sm'],
       control: {
-        type: "select",
+        type: 'select',
         labels: {
-          lg: "Large",
-          sm: "Small",
+          lg: 'Large',
+          sm: 'Small',
         },
       },
     },
@@ -39,9 +41,9 @@ export const Default = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   btnType: ButtonType.Default,
-  children: "BUTTON",
+  children: 'BUTTON',
 }
 
 Default.play = async () => {
-  await userEvent.click(screen.getByText("BUTTON"))
+  await userEvent.click(screen.getByText('BUTTON'))
 }
