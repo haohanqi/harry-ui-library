@@ -20,7 +20,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
 
   const classes = classNames('menu-item', className, {
     'is-disable': disabled,
-    'is-active': currentIndex === index,
+    'is-active': currentIndex === index && !disabled,
   })
 
   const handleClick = () => {

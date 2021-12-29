@@ -48,14 +48,14 @@ function App() {
       <Menu
         mode="vertical"
         className="custom"
-        defaultIndex="2"
+        defaultIndex="0"
         onSelect={(index) => {
           alert(index)
         }}
         defaultOpenSubmenus={['2']}
       >
-        <MenuItem>menu item 1</MenuItem>
-        <MenuItem disabled>menu item 2</MenuItem>
+        <MenuItem disabled>menu item 1</MenuItem>
+        <MenuItem>menu item 2</MenuItem>
         <SubMenu title="dropdown">
           <MenuItem>dropDown 1</MenuItem>
           <MenuItem>dropDown 2</MenuItem>

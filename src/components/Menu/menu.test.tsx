@@ -23,6 +23,16 @@ const Component: React.FC<MenueProps> = ({ ...props }) => {
   )
 }
 
+const ComponentWithSameDisableandDefaultindex: React.FC<MenueProps> = ({
+  ...props
+}) => {
+  return (
+    <Menu {...props}>
+      <MenuItem disabled>disabled-item</MenuItem>
+    </Menu>
+  )
+}
+
 const defaultProps: MenueProps = {
   defaultIndex: '0',
   mode: 'horizontal',
@@ -53,6 +63,15 @@ describe('Test Menu Component', () => {
     expect(disabledElement).toHaveClass('menu-item is-disable')
     expect(menuElement.querySelectorAll(':scope > li')).toHaveLength(4)
   })
+  it('When defaultIndex and disabled item are same, should render the item as disabled', () => {
+    cleanup()
+    const wrapper = render(
+      <ComponentWithSameDisableandDefaultindex {...defaultProps} />
+    )
+    const disabledItem = wrapper.getByText('disabled-item')
+    expect(disabledElement).toHaveClass('is-disable')
+    expect(disabledElement).not.toHaveClass('is-active')
+  })
   it('click on items should change the active and call right call back', () => {
     fireEvent.click(disabledElement)
     expect(disabledElement).toHaveClass('menu-item is-disable')
@@ -69,7 +88,7 @@ describe('Test Menu Component', () => {
     menuElement = wrapper.getByTestId('test-menu')
     expect(menuElement).toHaveClass('menu-vertical')
   })
-  it('Should show dropdown items  when hover on  subMenu', async () => {
+  it('Should show dropdown items when hover on subMenu', async () => {
     const submenuElement = wrapper.getByText('dropDown')
     const submenuItem = wrapper.queryByText('drop1')
     expect(submenuItem).not.toBeInTheDocument()
