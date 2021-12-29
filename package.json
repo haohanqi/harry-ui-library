@@ -71,6 +71,7 @@
     "@storybook/react": "^6.4.9",
     "@storybook/testing-library": "^0.0.7",
     "css-loader": "^6.5.1",
+    "prettier": "2.5.1",
     "sass": "^1.45.1",
     "style-loader": "^3.3.1"
   }

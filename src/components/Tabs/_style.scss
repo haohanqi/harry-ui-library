@@ -1,44 +1,44 @@
 .tabs {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  list-style: none;
-  padding-left: 0;
-  min-height: 30px;
-  position: absolute;
-
-  .tabsItem {
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-right: 40px;
-    border-bottom: $menu-border-width solid $menu-border-color;
-    cursor: pointer;
-
-    .tabsItem-title {
-      min-width: 120px;
-      text-align: center;
-      font-size: $h6-font-size;
-      padding-bottom: 10px;
-      &.is-active {
-        color: $menu-item-active-color;
-        border-bottom: 1px solid $menu-item-active-color;
-      }
-      &.is-disabled {
-        color: $menu-item-disabled-color;
-        border-bottom: transparent;
-        pointer-events: none;
-        cursor: default;
-      }
-    }
-  }
-
-  .tabsItem-container {
+    list-style: none;
+    padding-left: 0;
+    min-height: 30px;
     position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    font-size: $h6-font-size;
-  }
+
+    .tabsItem {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-right: 40px;
+        border-bottom: $menu-border-width solid $menu-border-color;
+        cursor: pointer;
+
+        .tabsItem-title {
+            min-width: 120px;
+            text-align: center;
+            font-size: $h6-font-size;
+            padding-bottom: 10px;
+            &.is-active {
+                color: $menu-item-active-color;
+                border-bottom: 1px solid $menu-item-active-color;
+            }
+            &.is-disabled {
+                color: $menu-item-disabled-color;
+                border-bottom: transparent;
+                pointer-events: none;
+                cursor: default;
+            }
+        }
+    }
+
+    .tabsItem-container {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        font-size: $h6-font-size;
+    }
 }
