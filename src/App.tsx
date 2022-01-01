@@ -4,13 +4,43 @@ import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
 import Tabs from './components/Tabs/tabs'
-
+import Autocomplete from './components/Autocomplete/autocomplete'
 import './styles/index.scss'
 import TabsItem from './components/Tabs/tabsItem'
 
 function App() {
+  //const data = ['aaaa', 'aa', 'advb', 'cssa', 'dssd', 'daaas']
+  // const fetchSuggestion = (query: string) => {
+  //   const result = data
+  //     .filter((item) => item.includes(query))
+  //     .map((formatItem) => ({ value: formatItem }))
+  //   return result
+  // }
+
+  const asyncFetchSuggestion = (query: string) => {
+    return fetch(`http://api.github.com/search/users?q=${query}`)
+      .then((res) => res.json())
+      .then(({ items }) => {
+        console.log(items)
+        const formatItems = items
+          ? items.slice(0, 10).map((item: { login: string }) => ({
+              value: item.login,
+              ...item,
+            }))
+          : []
+        return formatItems
+      })
+  }
+  // const renderOptions = (item: string) => <h2>suggestion: {item}</h2>
   return (
     <div style={{ width: '95%', margin: 'auto' }}>
+      <Autocomplete
+        fetchSuggestion={asyncFetchSuggestion}
+        onSelect={(item) => {
+          console.log(item)
+        }}
+        // renderOptions={renderOptions}
+      ></Autocomplete>
       <Button
         className="customer"
         btnType={ButtonType.Primary}

@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 import classNames from 'classnames'
-import TabsItem, { TabsItemProps } from './tabsItem'
+import { TabsItemProps } from './tabsItem'
 
 export interface TabsProps {
   defaultIndex?: number
