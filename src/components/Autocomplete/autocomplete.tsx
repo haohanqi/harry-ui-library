@@ -7,10 +7,11 @@ import React, {
   useRef,
 } from 'react'
 import useDebounce from '../../hooks/useDebounce'
+import useClickOutside from '../../hooks/useClickOutside'
 
 export type DataSourceType<T = {}> = T & { value: string }
 
-interface AutocompleteProps
+export interface AutocompleteProps
   extends Omit<InputHTMLAttributes<HTMLElement>, 'onSelect'> {
   onSelect?: (item: string) => void
   fetchSuggestion: (
@@ -38,10 +39,13 @@ const Autocomplete: React.FC<AutocompleteProps> = (props) => {
   const [loading, setLoading] = useState(false)
   const [highlightIndex, setHighlightIndex] = useState(-1)
   const showDropDown = useRef(true)
+  const clickoutsideRef = useRef<HTMLDivElement>(null)
+  useClickOutside(clickoutsideRef, () => {
+    setSuggestion([])
+  })
   const debounceValue = useDebounce(inputValue, 300)
 
   useEffect(() => {
-    console.log(showDropDown.current)
     if (debounceValue && showDropDown.current) {
       setSuggestion([])
       const results = fetchSuggestion(debounceValue)
@@ -110,19 +114,20 @@ const Autocomplete: React.FC<AutocompleteProps> = (props) => {
   }
 
   return (
-    <div>
+    <div ref={clickoutsideRef}>
       <input
         value={inputValue}
         onChange={handleChange}
         {...restProps}
         onKeyDown={handleKeyDown}
+        data-testid="inputNode"
       />
 
       {/* suggest list */}
-      <ul>
+      <ul style={{ listStyle: 'none' }}>
         {loading ? (
           <div>loading</div>
-        ) : (
+        ) : suggestions && suggestions.length > 0 ? (
           suggestions.map((item, index) => (
             <li
               key={`${item}+${index}`}
@@ -136,7 +141,7 @@ const Autocomplete: React.FC<AutocompleteProps> = (props) => {
               {renderTemplete(item.value)}
             </li>
           ))
-        )}
+        ) : null}
       </ul>
     </div>
   )

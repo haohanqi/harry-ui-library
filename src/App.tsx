@@ -9,25 +9,24 @@ import './styles/index.scss'
 import TabsItem from './components/Tabs/tabsItem'
 
 function App() {
-  //const data = ['aaaa', 'aa', 'advb', 'cssa', 'dssd', 'daaas']
-  // const fetchSuggestion = (query: string) => {
-  //   const result = data
-  //     .filter((item) => item.includes(query))
-  //     .map((formatItem) => ({ value: formatItem }))
-  //   return result
-  // }
+  const data = ['aaaa', 'aa', 'advb', 'cssa', 'dssd', 'daaas']
+  const fetchSuggestion = (query: string) => {
+    const result = data
+      .filter((item) => item.includes(query))
+      .map((formatItem) => ({ value: formatItem }))
+    return result
+  }
 
   const asyncFetchSuggestion = (query: string) => {
     return fetch(`http://api.github.com/search/users?q=${query}`)
       .then((res) => res.json())
       .then(({ items }) => {
-        console.log(items)
         const formatItems = items
           ? items.slice(0, 10).map((item: { login: string }) => ({
               value: item.login,
               ...item,
             }))
-          : []
+          : null
         return formatItems
       })
   }
@@ -35,7 +34,7 @@ function App() {
   return (
     <div style={{ width: '95%', margin: 'auto' }}>
       <Autocomplete
-        fetchSuggestion={asyncFetchSuggestion}
+        fetchSuggestion={fetchSuggestion}
         onSelect={(item) => {
           console.log(item)
         }}

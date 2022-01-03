@@ -1,4 +1,9 @@
-import { fireEvent, render, RenderResult } from '@testing-library/react'
+import {
+  cleanup,
+  fireEvent,
+  render,
+  RenderResult,
+} from '@testing-library/react'
 import React from 'react'
 import Tabs from './tabs'
 import TabsItem from './tabsItem'
@@ -16,9 +21,11 @@ const Component: React.FC<TabsProps> = (props) => {
   )
 }
 
+const mockFn = jest.fn()
+
 const defaultProps: TabsProps = {
   defaultIndex: 0,
-  onSelect: jest.fn(),
+  onSelect: mockFn,
   className: 'custom',
   style: { color: 'red' },
 }
@@ -32,6 +39,10 @@ describe('Test Tabs Component', () => {
     wrapper = render(<Component {...defaultProps} />)
     tabsElement = wrapper.getByTestId('test-tabs')
     tabsItemElement = wrapper.getByText('defaultTab')
+  })
+
+  afterEach(() => {
+    cleanup()
   })
 
   it('test on Tabs default props, render correct tabs and tabs item', () => {
@@ -57,9 +68,10 @@ describe('Test Tabs Component', () => {
     expect(disabledTabItem).toHaveClass('is-disabled')
   })
   it("test on disbale Tabs item, expect tab is unclickable, callback won't be called", () => {
+    mockFn.mockClear()
     const disabledTabItem = wrapper.getByText('disabledTab')
     fireEvent.click(disabledTabItem)
-    expect(defaultProps.onSelect).not.toBeCalled()
     expect(disabledTabItem).not.toHaveClass('is-active')
+    expect(defaultProps.onSelect).not.toHaveBeenCalled()
   })
 })
