@@ -7,6 +7,7 @@ import Tabs from './components/Tabs/tabs'
 import Autocomplete from './components/Autocomplete/autocomplete'
 import './styles/index.scss'
 import TabsItem from './components/Tabs/tabsItem'
+import Select from './components/Select/select'
 
 function App() {
   const data = ['aaaa', 'aa', 'advb', 'cssa', 'dssd', 'daaas']
@@ -17,8 +18,8 @@ function App() {
     return result
   }
 
-  const asyncFetchSuggestion = (query: string) => {
-    return fetch(`http://api.github.com/search/users?q=${query}`)
+  const asyncFetchSuggestion = () => {
+    return fetch(`http://api.github.com/search/users?q=${'aa'}`)
       .then((res) => res.json())
       .then(({ items }) => {
         const formatItems = items
@@ -40,6 +41,13 @@ function App() {
         }}
         // renderOptions={renderOptions}
       ></Autocomplete>
+      <Select
+        // selectionData={() => [
+        //   { value: 'haohanqi' },
+        //   { value: 'kobe', disble: true },
+        // ]}
+        selectionData={asyncFetchSuggestion}
+      ></Select>
       <Button
         className="customer"
         btnType={ButtonType.Primary}
